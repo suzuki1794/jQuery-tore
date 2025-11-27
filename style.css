@@ -1,24 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
 
+html {
+  scroll-behavior: smooth; /* ★ページ内リンクをスムーズスクロールに */
+}
+
 body {
   color: rgb(59, 59, 59);
   font-family: 'Noto Serif JP', serif;
   letter-spacing: 1px;
+  /* ★背景をゆっくり動くグラデーションに */
+  background: linear-gradient(120deg, #fdfbfb, #ebedee, #f9f7ff);
+  background-size: 300% 300%;
+  animation: bg-move 20s ease infinite;
 }
 
+/* ★リンクに下線アニメーション */
 a,
 a:hover,
 a:visited {
   color: rgb(59, 59, 59);
   text-decoration: none;
+  position: relative;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: rgb(59, 59, 59);
+  transition: width .3s ease;
+}
+
+a:hover::after {
+  width: 100%;
 }
 
 a:hover {
-  opacity: .7;
+  opacity: .8;
 }
 
 img {
   max-width: 100%;
+  transition: transform .5s ease, filter .5s ease; /* ★画像ふわっと拡大 */
+}
+
+img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.03);
 }
 
 h2,
@@ -30,10 +61,17 @@ h2 {
   font-size: 36px;
 }
 
+/* --------------------
+   ヘッダー周り
+-------------------- */
+
 nav {
-  background-color: rgb(238, 238, 238);
-  position: relative;
-  /* height: 70px; */
+  background-color: rgba(238, 238, 238, 0.9);
+  position: sticky; /* ★スクロールしても追従 */
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(4px); /* ★半透明ガラス風 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 #navbox {
@@ -43,6 +81,7 @@ nav {
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 #navbox ul {
@@ -53,27 +92,38 @@ nav {
 
 #navbox ul li {
   margin: 0 10px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  /* background-color: rgb(43, 43, 43); */
-  width: 120px;
-  height: 70px;
-}
+/* --------------------
+   メインビジュアル
+-------------------- */
 
 .main_visual {
   width: 100%;
   height: calc(100vh - 70px);
   background-image: url(../img/main_visual.jpg);
   background-size: cover;
-}
-.main_visual {
+  background-position: center;
   user-select: none;
   position: relative;
+  overflow: hidden;
 }
+
+/* ★うっすら流れる光のグラデーション */
+.main_visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 0%, rgba(255,255,255,0.4), transparent 60%),
+              radial-gradient(circle at 80% 100%, rgba(255,255,255,0.25), transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: hero-glow 6s ease-in-out infinite;
+}
+
 .title-text {
   position: absolute;
   top: 50%;
@@ -81,27 +131,45 @@ nav {
   transform: translateX(-50%) translateY(-50%);
 }
 
+/* ★タイトルとサブタイトルをふわっと出す */
 .main_visual h2 {
   color: #fff;
   text-align: center;
-  /* line-height: calc(100vh - 70px); */
   font-size: 62px;
   letter-spacing: 6px;
   text-shadow: 1px 2px 8px #808080;
+  opacity: 0;
+  animation: fade-up 1.4s ease-out forwards;
 }
+
 .main_visual p {
   font-size: 28px;
   text-align: center;
   color: #fff;
   text-shadow: 1px 2px 4px #808080;
+  margin-top: 16px;
+  opacity: 0;
+  animation: fade-up 1.4s ease-out forwards;
+  animation-delay: .35s;
 }
+
+/* 文字1文字ずつふわっとさせたいとき用 */
 .title {
-  opacity:0;
+  opacity: 0;
 }
 .title span {
   opacity: 0;
+  display: inline-block;
+  transform: translateY(20px);
   -webkit-transition: .6s ease-in-out;
   transition: .6s ease-in-out;
+}
+.title.show {
+  opacity: 1;
+}
+.title.show span {
+  opacity: 1;
+  transform: translateY(0);
 }
 .subtitle {
   opacity: 0;
@@ -112,8 +180,12 @@ nav {
 }
 
 #main_bg {
-  background-color: rgb(241, 241, 241);
+  background-color: rgba(241, 241, 241, 0.9);
 }
+
+/* --------------------
+   NEWS
+-------------------- */
 
 .news_box {
   width: 1000px;
@@ -129,10 +201,10 @@ nav {
 .news_box h2::after {
   content: '';
   position: absolute;
-  width: 60px;
-  height: 1px;
-  background-color: rgb(43, 43, 43);
-  bottom: -10px;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  bottom: -12px;
   left: 0;
 }
 
@@ -141,16 +213,29 @@ nav {
   display: flex;
 }
 
+/* ★カードホバーで浮かせる */
 .news_item {
   width: 25%;
   box-sizing: border-box;
   padding-left: 20px;
   border-right: 1px solid rgb(43, 43, 43);
+  padding-bottom: 10px;
+  transition: transform .4s ease, box-shadow .4s ease, background-color .4s ease;
 }
 
 .news_item:last-child {
   border: none;
 }
+
+.news_item:hover {
+  transform: translateY(-8px);
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* --------------------
+   ABOUT
+-------------------- */
 
 .about_us {
   display: flex;
@@ -176,6 +261,10 @@ nav {
   padding: 130px 0 0 60px;
 }
 
+/* --------------------
+   LINEUP / FRUIT
+-------------------- */
+
 .lineup {
   margin-top: 80px;
 }
@@ -197,7 +286,17 @@ nav {
 
 .fruit_item {
   width: 30%;
+  transition: transform .5s ease, box-shadow .5s ease;
 }
+
+.fruit_item:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.12);
+}
+
+/* --------------------
+   CHERRY SECTION
+-------------------- */
 
 .cherry {
   width: 1000px;
@@ -219,6 +318,12 @@ nav {
 .cherry_item {
   width: 47%;
   margin-bottom: 30px;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.cherry_item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
 }
 
 .cherry_item h3 {
@@ -229,11 +334,14 @@ nav {
   margin-top: 10px;
 }
 
+/* --------------------
+   CONTACT
+-------------------- */
+
 .contact_us {
   width: 1000px;
   max-width: 100%;
   margin: 120px auto 0;
-  margin-top: 120px;
   position: relative;
   height: 700px;
 }
@@ -259,6 +367,14 @@ nav {
   height: 600px;
   box-sizing: border-box;
   padding: 120px 40px 100px 120px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15); /* ★カード感強めに */
+  border-radius: 8px;
+  transition: transform .5s ease, box-shadow .5s ease;
+}
+
+.contact_content:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 24px 50px rgba(0,0,0,0.18);
 }
 
 .contact_content p {
@@ -269,8 +385,11 @@ nav {
 .contact_content h3 {
   margin-top: 50px;
   font-weight: bold;
-  /* margin-bottom: 14px; */
 }
+
+/* --------------------
+   FOOTER
+-------------------- */
 
 .fotter_container {
   width: 1000px;
@@ -291,6 +410,10 @@ nav {
   font-size: 15px;
 }
 
+/* --------------------
+   SLIDER & ARROWS
+-------------------- */
+
 #slider {
   position: relative;
   width: 90%;
@@ -300,6 +423,8 @@ nav {
 .slide-arrow {
   width: 40px;
   height: 40px;
+  cursor: pointer;
+  transition: transform .25s ease, filter .25s ease;
 }
 
 .prev-arrow {
@@ -318,6 +443,15 @@ nav {
   z-index: 2;
 }
 
+.slide-arrow:hover {
+  transform: translateY(-50%) scale(1.15);
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.25));
+}
+
+/* --------------------
+   HAMBURGER & BACK TO TOP
+-------------------- */
+
 .hamburger-button {
   display: flex;
   justify-content: center;
@@ -332,6 +466,15 @@ nav {
   width: 40px;
   height: 40px;
   outline: none;
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease;
+}
+
+.hamburger-button:hover {
+  transform: scale(1.08) rotate(4deg);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.35);
+  background-color: #000;
 }
 
 .hamburger-button path {
@@ -346,12 +489,19 @@ nav {
 .hamburger-nav ul li {
   margin: 12px 0;
 }
+
 .arrow {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 40px;
+  cursor: pointer;
+  animation: bounce 1.8s infinite; /* ★ページ下部の矢印をピョンピョンさせる */
 }
+
+/* --------------------
+   FADE IN (スクロール)
+-------------------- */
 
 .fadein {
   opacity: 0;
@@ -365,12 +515,50 @@ nav {
   transform: translateY(0);
 }
 
+/* --------------------
+   KEYFRAMES
+-------------------- */
 
+@keyframes bg-move {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 24px));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes hero-glow {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.8; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+/* --------------------
+   SP用
+-------------------- */
 
 @media screen and (max-width: 769px) {
-  /* nav {
-    height: 110px;
-  } */
+
   .title-text {
     width: 100%;
   }
@@ -420,7 +608,6 @@ nav {
   }
 
   .news_container {
-    /* margin-top: 60px; */
     flex-direction: column;
   }
 
