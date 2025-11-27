@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schoo農園 | サンプルサイト</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/slick.css">
+  <link rel="stylesheet" href="css/hamburger-menu.css">
+  <link rel="stylesheet" href="css/lightbox.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <script src="js/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div id="navbox">
+      <h1>
+        <a href="/">
+          Schoo 農園
+        </a>
+      </h1>
+      <ul>
+        <li>
+          <a href="#about">
+            私達について
+          </a>
+        </li>
+        <li>
+          <a href="#lineup">
+            果物一覧
+          </a>
+        </li>
+        <li>
+          <a href="#cherry">
+            さくらんぼ紹介
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="menu">
+      <button class="hamburger-button"></button>
+      <nav class="hamburger-nav">
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">Schoo農園について</a></li>
+          <li><a href="#">果物一覧</a></li>
+          <li><a href="#">さくらんぼ紹介</a></li>
+        </ul>
+      </nav>
+    </div>
+  </nav>
+  <header>
+    <div class="main_visual">
+      <div class="title-text">
+        <h2 class="title">Schoo Agri</h2>
+        <p class="subtitle">in Yamagata</p>
+      </div>
+    </div>
+  </header>
+  <section id="main_bg">
+    <div class="news_box fadein">
+      <h2>お知らせ</h2>
+      <div class="news_container">
+        <div class="news_item">
+          <p class="news_date">2022.11.16</p>
+          <p class="news_content">
+            <a href="">
+              サンふじりんご集荷開始
+            </a>
+          </p>
+        </div>
+        <div class="news_item">
+          <p class="news_date">2022.9.20</p>
+          <p class="news_content">
+            <a href="">
+              シャインマスカット集荷開始
+            </a>
+          </p>
+        </div>
+        <div class="news_item">
+          <p class="news_date">2022.7.20</p>
+          <p class="news_content">
+            <a href="">
+              尾花沢産スイカ集荷開始
+            </a>
+          </p>
+        </div>
+        <div class="news_item">
+          <p class="news_date">2022.6.20</p>
+          <p class="news_content">
+            <a href="">
+              さくらんぼ【佐藤錦】集荷開始
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about_us fadein" id="about">
+      <div class="about_img">
+        <img src="img/about_us.jpg" alt="">
+      </div>
+      <div class="about_bontent">
+        <h2>Schoo農園について</h2>
+        <p>
+          Schoo農園は山形県でさくらんぼを主に栽培する農家です。<br>
+          さくらんぼ以外にも、スイカ、桃、ぶどう、洋梨、りんごなど<br>
+          さまざまな果樹を栽培しています。
+        </p>
+      </div>
+    </div>
+
+    <div class="lineup fadein" id="lineup">
+      <h2>果物一覧</h2>
+      <p>Schoo農園で栽培している果物たちです</p>
+      <div class="fruit_container" id="slider">
+        <div class="fruit_item">
+          <img src="img/slider-01.jpg" alt="">
+        </div>
+        <div class="fruit_item">
+          <img src="img/slider-02.jpg" alt="">
+        </div>
+        <div class="fruit_item">
+          <img src="img/slider-03.jpg" alt="">
+        </div>
+        <div class="fruit_item">
+          <img src="img/slider-04.jpg" alt="">
+        </div>
+        <div class="fruit_item">
+          <img src="img/slider-05.jpg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="cherry fadein" id="cherry">
+      <h2>さくらんぼ紹介</h2>
+      <p>
+        生産量日本一の山形のさくらんぼ<br>
+        人気の品種を紹介します。
+      </p>
+      <div class="cherry_container">
+        <div class="cherry_item">
+          <a href="img/fruit01.jpg" data-lightbox="photo">
+            <img src="img/fruit01.jpg" alt="">
+          </a>
+          <h3>佐藤錦</h3>
+          <p>さくらんぼ全体の70％を占める生産量を誇る、さくらんぼの王道品種。酸味と甘味のバランスが最高です。</p>
+        </div>
+        <div class="cherry_item">
+          <a href="img/fruit02.jpg" data-lightbox="photo">
+            <img src="img/fruit02.jpg" alt="">
+          </a>
+          <h3>紅秀峰</h3>
+          <p>大粒で見が大きいのが特徴。固めの品種なのでパリッとした食感も人気の理由です。</p>
+        </div>
+        <div class="cherry_item">
+          <a href="img/fruit03.jpg" data-lightbox="photo">
+            <img src="img/fruit03.jpg" alt="">
+          </a>
+          <h3>紅王</h3>
+          <p>新しく品種改良されて登場した品種。500円玉ほどの大きさまで生育し、さくらんぼの概念を覆すような美味しさです。</p>
+        </div>
+        <div class="cherry_item">
+          <a href="img/fruit04.jpg" data-lightbox="photo">
+            <img src="img/fruit04.jpg" alt="">
+          </a>
+          <h3>ナポレオン</h3>
+          <p>主に加工用として栽培されている品種で、佐藤錦の勾配樹として栽培されていることが多いです。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact_us fadein">
+      <div class="contact_content">
+        <h2>Schoo農園</h2>
+        <p>
+          山形件〇〇市〇〇町○ー○ー○<br>
+          代表：さとうひらく<br>
+          TEL：00-0000-0000<br>
+          mail：sample@schoo.com<br>
+        </p>
+        <h3>栽培果樹</h3>
+        <p>
+          さくらんぼ、スイカ、桃、ぶどう、すもも、洋梨、りんご
+        </p>
+      </div>
+      <div class="contact_img">
+        <img src="img/contact.jpg" alt="">
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="fotter_container">
+      <div class="footer_titie">
+        Schoo農園
+      </div>
+      <div class="footer_spec">
+        <a href="">
+          https://schoo-noen.com
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="arrow">
+    <a href="#">
+      <img src="img/arrow.png" alt="">
+    </a>
+  </div>
+
+  <script src="js/slick.min.js"></script>
+  <script src="js/hamburger-menu.js"></script>
+  <script src="js/lightbox.min.js"></script>
+  <script>
+    $(function () {
+      $('#slider').slick({
+        infinity: true,
+        slidesToShow: 3,
+        sliderToScroll: 1,
+        prevArrow: '<img src="img/prev_btn.png" class="slide-arrow prev-arrow">',
+        nextArrow: '<img src="img/next_btn.png" class="slide-arrow next-arrow">',
+        responsive: [
+          {
+            breakpoint: 769,
+            settings: {
+              slidesToShow: 1,
+            },
+          },
+        ],
+      });
+    });
+
+    $(function () {
+      $('a[href^="#"]').click(function () {
+        let href = $(this).attr('href');
+        let target = $(href == "#" || href == "" ? 'html' : href);
+        let position = target.offset().top;
+        let speed = 500;
+        console.log(position);
+        $('html, body').animate({ scrollTop: position }, speed, "swing");
+        return false;
+      });
+    });
+
+    $(function () {
+      $(window).scroll(function () {
+        const height = $(window).height();
+        const scroll = $(window).scrollTop();
+
+        $('.fadein').each(function () {
+          const targetPos = $(this).offset().top;
+          if (scroll > targetPos - height + 100) {
+            $(this).addClass("is-fadein");
+          }
+        });
+      });
+    });
+
+    $(function () {
+      const titleBox = $(".title");
+      const speed = 100;
+      const content = titleBox.html();
+      const text = $.trim(content);
+      let newHtml = "";
+
+      text.split("").forEach(function (t) {
+        newHtml += `<span>${t}</span>`;
+        // newHtml += '<span>' + t + '</span>';
+      });
+      titleBox.html(newHtml);
+
+      let textNumber = 0;
+      titleBox.css({ opacity: 1 });
+      setInterval(function () {
+        titleBox.find('span').eq(textNumber).css({ opacity: 1 });
+        textNumber++
+      }, speed);
+
+      setTimeout(function() {
+        $('.subtitle').addClass('show');
+      }, 2000);
+    });
+
+
+
+  </script>
+</body>
+
+</html>
